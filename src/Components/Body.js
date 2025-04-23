@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
-import resList from "../utils/mockData";
+// import resList from "../utils/mockData";
 import ResCard from "./RestaurantCard";
 import { SWIGGY_API } from "../utils/constants";
 
 const Body = () => {
   const [listOfRestaurant, setListOfRestaurant] = useState([]);
-  // const [filteredRestaurant, setFilteredRestaurant] =useState([])
+  const [filteredRestaurant, setFilteredRestaurant] =useState([])
   const [searchText, setSearchText] = useState("");
   useEffect(() => {
     fetchData();
@@ -26,7 +26,7 @@ const Body = () => {
   ) : (
     <div className="body">
       <div className="filter">
-        {/* <div className="search">
+        <div className="search">
           <input
             type="text"
             className="search-box"
@@ -42,14 +42,14 @@ const Body = () => {
             })
             setFilteredRestaurant(searchedRestaurants)
           }}>Search</button>
-        </div> */}
+        </div>
         <button
           className="filter-button"
           onClick={() => {
-            const filteredList = listOfRestaurant.filter(
+            const filteredList = filteredRestaurant.filter(
               (res) => res.info.avgRating > 4.5
             );
-            setListOfRestaurant(filteredList);
+            setFilteredRestaurant(filteredList);
           }}
         >
           Top Rated Restaurants
@@ -57,7 +57,7 @@ const Body = () => {
         <button
           className="filter-button"
           onClick={() => {
-            setListOfRestaurant(listOfRestaurant);
+            setFilteredRestaurant(listOfRestaurant);
           }}
         >
           Reset Filter
